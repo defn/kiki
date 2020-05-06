@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  drone:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drone.rule=Host(`drone.whoa.bot`)"
+
+networks:
+  default:
+    external:
+      name: kitt
