@@ -25,3 +25,11 @@ services:
       - DRONE_RUNNER_NAME=runner
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  cloudflared:
+    image: defn/home:${HOME_VARIANT:-latest}
+    restart: always
+    entrypoint: [ "/service" ]
+    command: [ "cloudflared" ]
+    network_mode: "bridge"
+    volumes:
+      - ./etc/cloudflared:/etc/cloudflared
