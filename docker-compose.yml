@@ -10,7 +10,7 @@ services:
     env_file: .env
     environment:
       - DRONE_RPC_SECRET
-      - DRONE_SERVER_HOST=drone.whoa.bot
+      - DRONE_SERVER_HOST=drone.defn.sh
       - DRONE_SERVER_PROTO=https
       - DRONE_GITHUB_CLIENT_ID
       - DRONE_GITHUB_CLIENT_SECRET
@@ -19,17 +19,20 @@ services:
     env_file: .env
     environment:
       - DRONE_RPC_SECRET
-      - DRONE_RPC_HOST=drone.whoa.bot
-      - DRONE_RPC_PROTO=https
+      - DRONE_RPC_HOST=drone
+      - DRONE_RPC_PROTO=http
       - DRONE_RUNNER_CAPACITY=2
       - DRONE_RUNNER_NAME=runner
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    links:
+      - drone
   cloudflared:
     image: defn/home:${HOME_VARIANT:-latest}
     restart: always
     entrypoint: [ "/service" ]
     command: [ "cloudflared" ]
-    network_mode: "bridge"
     volumes:
       - ./etc/cloudflared:/etc/cloudflared
+    links:
+      - drone
