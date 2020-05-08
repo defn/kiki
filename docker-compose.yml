@@ -29,10 +29,11 @@ services:
       - drone
   cloudflared:
     image: defn/home:${HOME_VARIANT:-latest}
+    entrypoint: [ "/usr/local/bin/cloudflared" ]
+    command: [ "--no-autoupdate", "tunnel" ]
     restart: always
-    entrypoint: [ "/service" ]
-    command: [ "cloudflared" ]
     volumes:
-      - ./etc/cloudflared:/etc/cloudflared
-    links:
-      - drone
+      - ${HOME}/.cloudflared:/etc/cloudflared
+    environment:
+      - TUNNEL_URL=https://traefik.whoa.bot
+      - TUNNEL_HOSTNAME=drone.defn.sh
