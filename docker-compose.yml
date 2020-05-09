@@ -28,9 +28,7 @@ services:
     links:
       - drone
   cloudflared:
-    image: defn/home:${HOME_VARIANT:-latest}
-    entrypoint: [ "/usr/local/bin/cloudflared" ]
-    command: [ "--no-autoupdate", "tunnel" ]
+    image: letfn/cloudflared
     restart: always
     volumes:
       - ${HOME}/.cloudflared:/etc/cloudflared
