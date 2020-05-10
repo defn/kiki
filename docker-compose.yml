@@ -10,7 +10,7 @@ services:
     env_file: .env
     environment:
       - DRONE_RPC_SECRET
-      - DRONE_SERVER_HOST=drone.defn.sh
+      - DRONE_SERVER_HOST=drone.whoa.bot
       - DRONE_SERVER_PROTO=https
       - DRONE_GITHUB_CLIENT_ID
       - DRONE_GITHUB_CLIENT_SECRET
@@ -50,4 +50,4 @@ services:
       - ${HOME}/.cloudflared:/etc/cloudflared
     environment:
       - TUNNEL_URL=https://traefik.whoa.bot
-      - TUNNEL_HOSTNAME=drone.defn.sh
+      - TUNNEL_HOSTNAME=drone.whoa.bot

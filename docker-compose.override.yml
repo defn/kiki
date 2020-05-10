@@ -3,7 +3,7 @@ services:
   drone:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.drone.rule=Host(`drone.defn.sh`)"
+      - "traefik.http.routers.drone.rule=Host(`drone.whoa.bot`,`drone.defn.sh`) && PathPrefix(`/hook`)"
 
 networks:
   default:
