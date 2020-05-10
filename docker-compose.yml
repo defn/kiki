@@ -23,10 +23,23 @@ services:
       - DRONE_RPC_PROTO=http
       - DRONE_RUNNER_CAPACITY=2
       - DRONE_RUNNER_NAME=runner
+      - DRONE_SECRET_PLUGIN_ENDPOINT=http://drone-vault:3000
+      - DRONE_SECRET_PLUGIN_TOKEN
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     links:
       - drone
+      - drone-vault
+  drone-vault:
+    image: drone/vault
+    ports:
+      - 3000
+    environment:
+      - DRONE_DEBUG=true
+      - DRONE_SECRET
+      - VAULT_ADDR=https://vault.whoa.bot
+      - VAULT_AUTH_TYPE=approle
+      - VAULT_TOKEN
   cloudflared:
     image: letfn/cloudflared
     restart: always
