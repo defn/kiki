@@ -38,7 +38,6 @@ services:
       - DRONE_DEBUG=true
       - DRONE_SECRET
       - VAULT_ADDR=https://vault.whoa.bot
-      - VAULT_AUTH_TYPE=approle
       - VAULT_TOKEN
   cloudflared:
     image: letfn/cloudflared
