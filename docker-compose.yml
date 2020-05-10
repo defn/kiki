@@ -50,4 +50,4 @@ services:
       - ./etc/cloudflared:/etc/cloudflared
     environment:
       - TUNNEL_URL=https://traefik.whoa.bot
-      - TUNNEL_HOSTNAME=drone.whoa.bot
+      - TUNNEL_HOSTNAME=drone.defn.sh
