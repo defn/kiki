@@ -17,6 +17,7 @@ services:
       - DRONE_USER_CREATE
       - DRONE_USER_FILTER
       - DRONE_REGISTRATION_CLOSED=true
+      - DRONE_LIMIT_EVENTS=push,tag
     links:
       - drone-vault
   drone-runner:
