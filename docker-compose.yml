@@ -15,6 +15,7 @@ services:
       - DRONE_GITHUB_CLIENT_ID
       - DRONE_GITHUB_CLIENT_SECRET
       - DRONE_USER_CREATE
+      - DRONE_USER_FILTER
     links:
       - drone-vault
   drone-runner:
