@@ -16,6 +16,8 @@ services:
       - DRONE_GITHUB_CLIENT_SECRET
       - DRONE_USER_CREATE
       - DRONE_USER_FILTER
+      - DRONE_REGISTRATION_CLOSED=true
+      - DRONE_WEBHOOK_ENDPOINT
     links:
       - drone-vault
   drone-runner:
