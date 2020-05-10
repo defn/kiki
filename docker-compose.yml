@@ -14,8 +14,6 @@ services:
       - DRONE_SERVER_PROTO=https
       - DRONE_GITHUB_CLIENT_ID
       - DRONE_GITHUB_CLIENT_SECRET
-      - DRONE_SECRET_PLUGIN_ENDPOINT=http://drone-vault:3000
-      - DRONE_SECRET_PLUGIN_TOKEN
       - DRONE_USER_CREATE
     links:
       - drone-vault
