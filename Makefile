@@ -29,6 +29,22 @@ build: # Build container
 edit:
 	docker-compose -f docker-compose.docs.yml up --quiet-pull
 
+logs: # Logs for docker-compose
+	docker-compose logs -f
+
+up: # Run home container with docker-compose
+	$(RENEW) docker-compose up -d
+
+down: # Shut down home container
+	docker-compose down
+
+restart: # Restart home container
+	$(RENEW) docker-compose restart
+
+recreate: # Recreate home container
+	-$(MAKE) down
+	$(MAKE) up
+
 requirements:
 	@echo
 	drone exec --pipeline $@
