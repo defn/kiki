@@ -16,6 +16,9 @@ services:
       - DRONE_USER_FILTER
       - DRONE_REGISTRATION_CLOSED=true
       - DRONE_LIMIT_EVENTS=push,tag
+    labels:
+      - "hera.hostname=drone.defn.sh"
+      - "hera.port=80"
     links:
       - drone-vault
   drone-runner:
@@ -41,11 +44,3 @@ services:
       - DRONE_SECRET
       - VAULT_ADDR=https://vault.whoa.bot
       - VAULT_TOKEN
-  cloudflared:
-    image: letfn/cloudflared
-    restart: always
-    volumes:
-      - ./etc/cloudflared:/etc/cloudflared
-    environment:
-      - TUNNEL_URL=https://traefik.whoa.bot
-      - TUNNEL_HOSTNAME=drone.defn.sh
