@@ -37,7 +37,7 @@ up: # Run home container with docker-compose
 	$(RENEW) docker-compose up -d
 
 down: # Shut down home container
-	docker-compose down
+	docker-compose down --remove-orphans
 
 restart: # Restart home container
 	$(RENEW) docker-compose restart
