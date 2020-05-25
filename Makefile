@@ -26,26 +26,6 @@ build: # Build container
 	@echo
 	drone exec --pipeline $@
 
-edit:
-	docker-compose -f docker-compose.docs.yml pull docs
-	docker-compose -f docker-compose.docs.yml run --rm docs
-
-logs: # Logs for docker-compose
-	docker-compose logs -f
-
-up: # Run home container with docker-compose
-	$(RENEW) docker-compose up -d
-
-down: # Shut down home container
-	docker-compose down --remove-orphans
-
-restart: # Restart home container
-	$(RENEW) docker-compose restart
-
-recreate: # Recreate home container
-	-$(MAKE) down
-	$(MAKE) up
-
 requirements:
 	@echo
 	drone exec --pipeline $@
