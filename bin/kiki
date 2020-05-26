@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# USAGE: example [flags] args
+# USAGE: kiki [flags] pipeline
 #
-# This is an example
+# Run a drone pipeline
 
 function options {
-  DEFINE_string name 'world' "somebody's name" n
+  true
 }
 
 function main {
-  echo "example: ${FLAGS_name:-}: $@"
+  for _p in "$@"; do 
+    echo "INFO: running pipeline $_p"
+    drone exec --pipeline "$_p"
+  done
 }
 
 source sub "$0" "$@"
