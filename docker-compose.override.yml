@@ -3,7 +3,7 @@ services:
   drone:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.drone.rule=HostRegexp(`done.{domain:.+}`)"
+      - "traefik.http.routers.drone.rule=HostRegexp(`drone.{domain:.+}`)"
       - "traefik.http.services.drone.loadbalancer.server.port=80"
 
 networks:
