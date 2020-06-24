@@ -18,6 +18,11 @@ services:
       - DRONE_LIMIT_EVENTS=push,tag
     links:
       - drone-vault
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drone.entrypoints=https"
+      - "traefik.http.routers.drone.rule=HostRegexp(`drone.{domain:.+}`)"
+      - "traefik.http.services.drone.loadbalancer.server.port=80"
   drone-runner:
     image: drone/drone-runner-docker:1
     env_file: .env
@@ -41,3 +46,8 @@ services:
       - DRONE_SECRET
       - VAULT_ADDR=https://vault.${KITT_DOMAIN}
       - VAULT_TOKEN
+
+networks:
+  default:
+    external:
+      name: kitt

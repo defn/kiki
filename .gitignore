@@ -9,3 +9,5 @@ target/
 /main-*
 
 .env
+
+docker-compose.override.yml
