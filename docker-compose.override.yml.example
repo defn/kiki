@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  drone:
+    labels:
+      hera.hostname: mysite.com
+      hera.port: 80
