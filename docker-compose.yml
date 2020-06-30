@@ -46,6 +46,11 @@ services:
       - DRONE_SECRET
       - VAULT_ADDR=https://vault.${KITT_DOMAIN}
       - VAULT_TOKEN
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drone-vault.entrypoints=https"
+      - "traefik.http.routers.drone-vault.rule=HostRegexp(`drone-vault.{domain:.+}`)"
+      - "traefik.http.services.drone-vault.loadbalancer.server.port=3000"
 
 networks:
   default:
