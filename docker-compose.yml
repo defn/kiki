@@ -7,13 +7,8 @@ services:
       - "./data/drone:/data"
     env_file: .env
     environment:
-      - DRONE_RPC_SECRET
       - DRONE_SERVER_HOST=drone.${KITT_DOMAIN}
       - DRONE_SERVER_PROTO=https
-      - DRONE_GITHUB_CLIENT_ID
-      - DRONE_GITHUB_CLIENT_SECRET
-      - DRONE_USER_CREATE
-      - DRONE_USER_FILTER
       - DRONE_REGISTRATION_CLOSED=true
       - DRONE_LIMIT_EVENTS=push,tag
     links:
