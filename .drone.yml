@@ -41,12 +41,12 @@ steps:
 - name: kaniko
   image: letfn/drone-kaniko
   settings:
-    args: --destination=defn/kiki
+    args: --destination=registry.defn.sh/defn/kiki
     cache: true
     cache_repo: defn/cache
     password:
       from_secret: docker_password
-    repo: defn/kiki
+    repo: registry.defn.sh/defn/kiki
     tag: latest
     username:
       from_secret: docker_username
