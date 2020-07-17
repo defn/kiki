@@ -43,7 +43,7 @@ steps:
   settings:
     args: --destination=registry.defn.sh/defn/kiki
     cache: true
-    cache_repo: defn/cache
+    cache_repo: registry.defn.sh/defn/cache
     password:
       from_secret: docker_password
     repo: registry.defn.sh/defn/kiki
