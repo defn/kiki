@@ -16,7 +16,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.drone.entrypoints=https"
-      - "traefik.http.routers.drone.rule=HostRegexp(`drone.{domain:.+}`)"
+      - "traefik.http.routers.drone.rule=Host(`drone.${KITT_DOMAIN}`)"
       - "traefik.http.services.drone.loadbalancer.server.port=80"
   drone-runner:
     image: drone/drone-runner-docker:1
@@ -44,7 +44,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.drone-vault.entrypoints=https"
-      - "traefik.http.routers.drone-vault.rule=HostRegexp(`drone-vault.{domain:.+}`)"
+      - "traefik.http.routers.drone-vault.rule=Host(`drone-vault.${KITT_DOMAIN}`)"
       - "traefik.http.services.drone-vault.loadbalancer.server.port=3000"
   registry:
     image: registry:2
@@ -55,7 +55,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.registry.entrypoints=https"
-      - "traefik.http.routers.registry.rule=HostRegexp(`registry.{domain:.+}`)"
+      - "traefik.http.routers.registry.rule=Host(`registry.${KITT_DOMAIN}`)"
       - "traefik.http.services.registry.loadbalancer.server.port=5000"
     volumes:
       - ./etc/registry/data:/var/lib/registry
@@ -70,7 +70,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.gitea.entrypoints=https"
-      - "traefik.http.routers.gitea.rule=HostRegexp(`gitea.{domain:.+}`)"
+      - "traefik.http.routers.gitea.rule=Host(`gitea.${KITT_DOMAIN}`)"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
       - "traefik.tcp.routers.ssh.entrypoints=ssh"
       - "traefik.tcp.routers.ssh.rule=HostSNI(`*`)"
