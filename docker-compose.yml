@@ -51,8 +51,13 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nexus.entrypoints=https"
+      - "traefik.http.routers.nexus.service=nexus"
       - "traefik.http.routers.nexus.rule=Host(`nexus.${KITT_DOMAIN}`)"
       - "traefik.http.services.nexus.loadbalancer.server.port=8081"
+      - "traefik.http.routers.nexus-docker.entrypoints=https"
+      - "traefik.http.routers.nexus-docker.service=nexus-docker"
+      - "traefik.http.routers.nexus-docker.rule=Host(`docker.${KITT_DOMAIN}`)"
+      - "traefik.http.services.nexus-docker.loadbalancer.server.port=8001"
     volumes:
       - "nexus:/nexus-data"
   registry:
