@@ -46,20 +46,6 @@ services:
       - "traefik.http.routers.drone-vault.entrypoints=https"
       - "traefik.http.routers.drone-vault.rule=Host(`drone-vault.${KITT_DOMAIN}`)"
       - "traefik.http.services.drone-vault.loadbalancer.server.port=3000"
-  nexus:
-    image: sonatype/nexus3
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nexus.entrypoints=https"
-      - "traefik.http.routers.nexus.service=nexus"
-      - "traefik.http.routers.nexus.rule=Host(`nexus.${KITT_DOMAIN}`)"
-      - "traefik.http.services.nexus.loadbalancer.server.port=8081"
-      - "traefik.http.routers.nexus-docker.entrypoints=https"
-      - "traefik.http.routers.nexus-docker.service=nexus-docker"
-      - "traefik.http.routers.nexus-docker.rule=Host(`docker.${KITT_DOMAIN}`)"
-      - "traefik.http.services.nexus-docker.loadbalancer.server.port=8001"
-    volumes:
-      - "nexus:/nexus-data"
   registry:
     image: registry:2
     environment:
@@ -94,6 +80,3 @@ networks:
   default:
     external:
       name: kitt
-
-volumes:
-  nexus:
