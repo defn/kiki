@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   nexus:
-    image: sonatype/nexus3
+    image: sonatype/nexus3:3.25.1
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nexus.entrypoints=https"
