@@ -46,35 +46,6 @@ services:
       - "traefik.http.routers.drone-vault.entrypoints=https"
       - "traefik.http.routers.drone-vault.rule=Host(`drone-vault.${KITT_DOMAIN}`)"
       - "traefik.http.services.drone-vault.loadbalancer.server.port=3000"
-  registry:
-    image: registry:2.7.1
-    environment:
-      xREGISTRY_AUTH: htpasswd
-      xREGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
-      xREGISTRY_AUTH_HTPASSWD_REALM: Registry
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.registry.entrypoints=https"
-      - "traefik.http.routers.registry.rule=Host(`registry.${KITT_DOMAIN}`)"
-      - "traefik.http.services.registry.loadbalancer.server.port=5000"
-    volumes:
-      - ./etc/registry/data:/var/lib/registry
-      - ./etc/registry/auth:/auth
-  gitea:
-    image: gitea/gitea:1.12.3
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-    volumes:
-      - ./etc/gitea:/data
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.gitea.entrypoints=https"
-      - "traefik.http.routers.gitea.rule=Host(`gitea.${KITT_DOMAIN}`)"
-      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
-      - "traefik.tcp.routers.ssh.entrypoints=ssh"
-      - "traefik.tcp.routers.ssh.rule=HostSNI(`*`)"
-      - "traefik.tcp.services.ssh.loadbalancer.server.port=22"
 
 networks:
   default:

@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  registry:
+    image: registry:2.7.1
+    environment:
+      xREGISTRY_AUTH: htpasswd
+      xREGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      xREGISTRY_AUTH_HTPASSWD_REALM: Registry
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.registry.entrypoints=https"
+      - "traefik.http.routers.registry.rule=Host(`registry.${KITT_DOMAIN}`)"
+      - "traefik.http.services.registry.loadbalancer.server.port=5000"
+    volumes:
+      - ./etc/registry/data:/var/lib/registry
+      - ./etc/registry/auth:/auth
+
+networks:
+  default:
+    external:
+      name: kitt
